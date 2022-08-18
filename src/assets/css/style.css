@@ -1,0 +1,330 @@
+@font-face {
+    font-family: "Poppins-Regular";
+    src: local("Poppins-Regular"), url("../fonts/poppins/Poppins-Regular.ttf") format("truetype");
+}
+
+* {
+    font-family: 'Poppins-Regular', sans-serif !important
+}
+
+.sidenav {
+    position: fixed;
+    height: 93vh;
+    width: 80px;
+    top: 55px;
+    left: 5px;
+    background-color: #1c1c1c;
+    overflow-x: hidden;
+    padding-top: 20px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.sidenav1open {
+    position: fixed;
+    height: 93vh;
+    width: 400px;
+    top: 55px;
+    left: 90px;
+    background-color: #1c1c1c;
+    overflow-x: hidden;
+    padding-top: 20px;
+    text-align: center;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-start;
+}
+
+.sidenav1close {
+    position: fixed;
+    height: 93vh;
+    width: 0;
+    top: 55px;
+    left: 90px;
+    background-color: #1c1c1c;
+    overflow-x: hidden;
+    padding-top: 20px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.sidenav button {
+    background: transparent;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.sidebar-item button:hover {
+    color: #fff;
+}
+
+.sidebar-item button:hover>svg path {
+    fill: #fff !important;
+}
+
+.sidebar-item p {
+    margin-top: 10px;
+    font-size: x-small;
+}
+
+.sidebar-item button {
+    padding: 8px 0;
+    color: #b3b3b3;
+}
+
+.sidebar-item path {
+    fill: #b3b3b3;
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {
+        padding-top: 15px;
+    }
+
+    .sidenav a {
+        font-size: 18px;
+    }
+}
+
+.sidebar-toggle-expanded {
+    top: 50%;
+    left: 10px;
+    position: fixed;
+    transform: translate(480px, -50%);
+}
+
+.sidebar-toggle-collapsed {
+    top: 50%;
+    left: 5px;
+    position: fixed;
+    transform: translate(80px, -50%);
+}
+
+.sidebar-toggle-expanded,
+.sidebar-toggle-collapsed {
+    margin: 0;
+    border: 0;
+    padding: 0;
+    background-color: #1c1c1c;
+    color: #b3b3b3;
+    padding: 8px 4px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.mainSidebarExpanded {
+    height: 100vh;
+    margin-left: 490px;
+    background: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: scroll;
+}
+
+.mainSidebarCollapsed {
+    height: 100vh;
+    margin-left: 80px;
+    background: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: scroll;
+}
+
+.nav {
+
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+    width: 100%;
+    background-color: #1c1c1c;
+    position: fixed;
+    margin: 0;
+    border: 0;
+    padding: 0;
+}
+
+.nav>.nav-header {
+    display: inline;
+}
+
+.nav>.nav-header>.nav-title {
+    display: inline-block;
+    font-size: 22px;
+    color: #fff;
+    padding: 10px 10px 10px 10px;
+}
+
+.nav>.nav-btn {
+    display: none;
+}
+
+.nav>.nav-links {
+    display: inline;
+    float: right;
+    font-size: 18px;
+}
+
+.nav>.nav-links>a {
+    display: inline-block;
+    padding: 13px 10px 13px 10px;
+    text-decoration: none;
+    color: #efefef;
+}
+
+.nav>.nav-links>a:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.nav>#nav-check {
+    display: none;
+}
+
+@media (max-width:600px) {
+    .nav>.nav-btn {
+        display: inline-block;
+        position: absolute;
+        right: 0px;
+        top: 0px;
+    }
+
+    .nav>.nav-btn>label {
+        display: inline-block;
+        width: 50px;
+        height: 50px;
+        padding: 13px;
+    }
+
+    .nav>.nav-btn>label:hover,
+    .nav #nav-check:checked~.nav-btn>label {
+        background-color: rgba(0, 0, 0, 0.3);
+    }
+
+    .nav>.nav-btn>label>span {
+        display: block;
+        width: 25px;
+        height: 10px;
+        border-top: 2px solid #eee;
+    }
+
+    .nav>.nav-links {
+        position: absolute;
+        display: block;
+        width: 100%;
+        background-color: #333;
+        height: 0px;
+        transition: all 0.3s ease-in;
+        overflow-y: hidden;
+        top: 50px;
+        left: 0px;
+    }
+
+    .nav>.nav-links>button {
+        display: block;
+        width: 100%;
+    }
+
+    .nav>#nav-check:not(:checked)~.nav-links {
+        height: 0px;
+    }
+
+    .nav>#nav-check:checked~.nav-links {
+        z-index: 10;
+        height: calc(100vh - 50px);
+        overflow-y: auto;
+    }
+}
+
+body {
+    background-color: #303030 !important;
+}
+
+.canvas-wrapper {
+    height: auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.zoom-container {
+    position: fixed;
+    align-self: flex-end;
+    background-color: #1c1c1c;
+    color: #b3b3b3;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
+
+.zoom-container button,
+.zoom-container input {
+    margin: 0;
+    border: 0;
+    padding: 10px;
+    background: transparent;
+    color: #b3b3b3;
+
+}
+
+.zoom-container input {
+    margin: 0;
+    border: 0;
+    padding: 0;
+    background-color: #1c1c1c;
+    color: #b3b3b3;
+    width: 30px;
+    text-align: center;
+
+}
+
+.zoom-container input::-webkit-outer-spin-button,
+.zoom-container input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.zoom-container input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.templates-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.card {
+    width: 180px;
+    height: 180px;
+    box-shadow: 0px 3px 2px 0px rgba(0, 0, 0, 0.08);
+    border-radius: 10px !important;
+}
+
+.gradient {
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-name: placeHolderShimmer;
+    animation-timing-function: linear;
+    background: linear-gradient(to right, #303030 15%, #1c1c1c 20%, #303030 30%, #303030 15%);
+    background-size: 1000px 640px;
+    position: relative;
+
+}
+
+@keyframes placeHolderShimmer {
+    0% {
+        background-position: -468px 0
+    }
+
+    100% {
+        background-position: 468px 0
+    }
+}
