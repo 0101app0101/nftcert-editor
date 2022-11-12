@@ -93,7 +93,7 @@ const BackgroundBar = () => {
             {isColorEnabled && 
                 <SketchPicker
                     styles={styles}
-                    color={canvasBackgroundColor}
+                    color={canvasBackgroundColor.rgb}
                     onChange={(updatedColor) => dispatch(changecanvasBackgroundColor(updatedColor))}
                 />}
             {isImageEnabled &&

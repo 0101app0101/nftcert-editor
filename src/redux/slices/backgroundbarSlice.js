@@ -1,14 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-    canvasBackgroundColor: {
-        rgb: {
-            r: 0,
-            g: 0,
-            b: 0,
-            a: 1,
-        }
-    }
+    canvasBackgroundColor: {}
 }
 
 export const backgroundbarSlice = createSlice({
@@ -16,13 +9,13 @@ export const backgroundbarSlice = createSlice({
     initialState,
     reducers: {
         changecanvasBackgroundColor: (state, action) => {
-            state.canvasBackgroundColor.rgb = action.payload.rgb
+            state.canvasBackgroundColor = action.payload
         }
     }
 })
 
 export const { changecanvasBackgroundColor } = backgroundbarSlice.actions;
 
-export const selectcanvasBackgroundColor = (state) => state.backgroundbar.canvasBackgroundColor.rgb;
+export const selectcanvasBackgroundColor = (state) => state.backgroundbar.canvasBackgroundColor;
 
 export default backgroundbarSlice.reducer;

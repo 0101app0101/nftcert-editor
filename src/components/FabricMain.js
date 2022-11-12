@@ -4,6 +4,7 @@ import { FabricJSCanvas, useFabricJSEditor } from "fabricjs-react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlassMinus, faMagnifyingGlassPlus } from "@fortawesome/free-solid-svg-icons";
 import { selectIsOpen } from "../redux/slices/sidebarSlice";
+import { selectcanvasBackgroundColor } from '../redux/slices/backgroundbarSlice';
 import TextTopBar from './TextTopBar';
 
 const FabricMain = () => {
@@ -31,6 +32,14 @@ const FabricMain = () => {
         editor?.canvas.setWidth(width)
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [height, width])
+
+    let canvasBackgroundColor = useSelector(selectcanvasBackgroundColor);
+
+    useEffect(()=>{
+        editor?.canvas.setBackgroundColor(canvasBackgroundColor.hex)
+        editor?.canvas.renderAll()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[canvasBackgroundColor])
 
     const zoomIn = () => setZoom(Math.floor(parseInt(parseInt(zoomPercentage) + parseInt(5))))
 
