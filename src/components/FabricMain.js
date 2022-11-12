@@ -1,11 +1,14 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { FabricJSCanvas, useFabricJSEditor } from "fabricjs-react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlassMinus, faMagnifyingGlassPlus } from "@fortawesome/free-solid-svg-icons";
 import { selectIsOpen } from "../redux/slices/sidebarSlice";
 import TextTopBar from './TextTopBar';
 
 const FabricMain = () => {
+
+    const { editor, onReady } = useFabricJSEditor();
 
     const isSidebarOpen = useSelector(selectIsOpen);
     let mainContentClass = isSidebarOpen ? "mainSidebarExpanded" : "mainSidebarCollapsed"
@@ -14,9 +17,20 @@ const FabricMain = () => {
     const initialwidth = parseInt(650)
     const initialzoomPercentage = parseFloat(100)
 
-    const [height, setHeight] = useState(initialHeight)
-    const [width, setWidth] = useState(initialwidth)
-    const [zoomPercentage, setZoomPercentage] = useState(initialzoomPercentage)
+    const [height, setHeight] = useState(0)
+    const [width, setWidth] = useState(0)
+    const [zoomPercentage, setZoomPercentage] = useState(0)
+
+    useEffect(() => {
+        setZoom(initialzoomPercentage)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
+
+    useEffect(() => {
+        editor?.canvas.setHeight(height)
+        editor?.canvas.setWidth(width)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [height, width])
 
     const zoomIn = () => setZoom(Math.floor(parseInt(parseInt(zoomPercentage) + parseInt(5))))
 
@@ -28,11 +42,12 @@ const FabricMain = () => {
         setWidth(parseInt(Math.floor(initialwidth * (parseFloat(parseFloat(percent) / parseFloat(100))))))
     }
 
+
     return (
         <div className={mainContentClass}>
             <TextTopBar />
             <div className='canvas-wrapper'>
-                <canvas className='canvas-main' width={width} height={height} style={{ height: height + "px", width: width + "px" }} />
+                <FabricJSCanvas className='canvas-main' onReady={onReady} />
             </div>
             <div className='zoom-container'>
                 <button onClick={() => zoomIn()} ><FontAwesomeIcon icon={faMagnifyingGlassPlus} /></button>

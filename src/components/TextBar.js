@@ -8,18 +8,18 @@ const TextBar = () => {
             <button className="add-text add-sub-heading">Add Sub Heading</button>
             <button className="add-text add-body-text">Add Text</button>
             <div className="templates-container">
-                <div class="card gradient" />
-                <div class="card gradient" />
-                <div class="card gradient" />
-                <div class="card gradient" />
-                <div class="card gradient" />
-                <div class="card gradient" />
-                <div class="card gradient" />
-                <div class="card gradient" />
-                <div class="card gradient" />
-                <div class="card gradient" />
-                <div class="card gradient" />
-                <div class="card gradient" />
+                <div className="card gradient" />
+                <div className="card gradient" />
+                <div className="card gradient" />
+                <div className="card gradient" />
+                <div className="card gradient" />
+                <div className="card gradient" />
+                <div className="card gradient" />
+                <div className="card gradient" />
+                <div className="card gradient" />
+                <div className="card gradient" />
+                <div className="card gradient" />
+                <div className="card gradient" />
             </div>
         </div>
     )

@@ -1,13 +1,18 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { openBackground, openText, openTemplates, openElements, openUploads, selectBackground, selectTemplates, selectText, selectElements, selectUploads } from '../redux/slices/sidebarSlice';
 const Sidebar = () => {
 
     const dispatch = useDispatch();
+    let isBackgroundSelected = useSelector(selectBackground)
+    let isTemplatesSelected = useSelector(selectTemplates)
+    let isTextSelected = useSelector(selectText)
+    let isElementsSelected = useSelector(selectElements)
+    let isUploadsSelected = useSelector(selectUploads)
 
     return (
         <div className="sidenav">
-            <div className="sidebar-item">
-                <button  onClick={() => dispatch(openTemplates())}>
+            <div className="sidebar-item" active={isTemplatesSelected ? "true" : "false"}>
+                <button onClick={() => dispatch(openTemplates())}>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="24"
@@ -22,7 +27,7 @@ const Sidebar = () => {
                     <p href="#about">Templates</p>
                 </button>
             </div>
-            <div className="sidebar-item">
+            <div className="sidebar-item" active={isUploadsSelected ? "true" : "false"}>
                 <button onClick={() => dispatch(openUploads())}>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -37,7 +42,7 @@ const Sidebar = () => {
                     <p href="#about">Upload</p>
                 </button>
             </div>
-            <div className="sidebar-item">
+            <div className="sidebar-item" active={isElementsSelected ? "true" : "false"}>
                 <button onClick={() => dispatch(openElements())}>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -55,7 +60,7 @@ const Sidebar = () => {
                     <p href="#about">Elements</p>
                 </button>
             </div>
-            <div className="sidebar-item">
+            <div className="sidebar-item" active={isTextSelected ? "true" : "false"}>
                 <button onClick={() => dispatch(openText())}>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -70,7 +75,7 @@ const Sidebar = () => {
                     <p href="#about">Text</p>
                 </button>
             </div>
-            <div className="sidebar-item">
+            <div className="sidebar-item" active={isBackgroundSelected ? "true" : "false"}>
                 <button onClick={() => dispatch(openBackground())}>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"

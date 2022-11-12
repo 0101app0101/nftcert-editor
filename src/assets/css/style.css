@@ -64,6 +64,14 @@
     fill: #fff !important;
 }
 
+.sidebar-item[active=true] button {
+    color: #fff;
+}
+
+.sidebar-item[active=true] button>svg path {
+    fill: #fff !important;
+}
+
 .sidebar-item p {
     margin-top: 10px;
     font-size: x-small;
@@ -251,9 +259,8 @@ body {
     align-items: center;
 }
 
-.canvas-main{
+.canvas-main {
     background: white;
-    transition: all 0.2s cubic-bezier(0.21, 0.31, 1, 1.24) 0s;
 }
 
 .zoom-container {
@@ -466,16 +473,7 @@ body {
     width: 10px !important;
 }
 
-#rc-editable-input-2,
-#rc-editable-input-4,
-#rc-editable-input-6,
-#rc-editable-input-8,
-#rc-editable-input-10,
-#rc-editable-input-12,
-#rc-editable-input-14,
-#rc-editable-input-16,
-#rc-editable-input-18,
-#rc-editable-input-20 {
+.sketch-picker input{
     background: #262626;
     border-radius: 10px;
     box-shadow: unset !important;
@@ -492,7 +490,7 @@ body {
     margin: 5px 0 10px 0;
 }
 
-.color-heading{
+.color-heading {
     padding-left: 20px;
     text-align: left;
     color: #b3b3b3;
