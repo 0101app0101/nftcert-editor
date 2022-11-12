@@ -32,7 +32,7 @@ const FabricMain = () => {
         <div className={mainContentClass}>
             <TextTopBar />
             <div className='canvas-wrapper'>
-                <canvas width={width} height={height} style={{ background: "white", height: height + "px", width: width + "px" }} />
+                <canvas className='canvas-main' width={width} height={height} style={{ height: height + "px", width: width + "px" }} />
             </div>
             <div className='zoom-container'>
                 <button onClick={() => zoomIn()} ><FontAwesomeIcon icon={faMagnifyingGlassPlus} /></button>

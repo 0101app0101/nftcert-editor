@@ -251,6 +251,11 @@ body {
     align-items: center;
 }
 
+.canvas-main{
+    background: white;
+    transition: all 0.2s cubic-bezier(0.21, 0.31, 1, 1.24) 0s;
+}
+
 .zoom-container {
     position: fixed;
     align-self: flex-end;
