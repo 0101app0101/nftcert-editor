@@ -2,8 +2,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faAngleRight, faAngleLeft } from "@fortawesome/free-solid-svg-icons"
 import { toggleSidebar, selectIsOpen } from "../redux/slices/sidebarSlice"
-import TextBar from "./TextBar"
-import SidebarMainLoading from "./SidebarMainLoading"
 
 const SidebarMain = (props) => {
     const dispatch = useDispatch();
