@@ -2,6 +2,7 @@ import { SketchPicker } from 'react-color'
 import { useDispatch, useSelector } from 'react-redux';
 import { selectColor, selectImage, enableColor, enableImage } from '../redux/slices/backgroundbarTogglerSlice';
 import { selectcanvasBackgroundColor, changecanvasBackgroundColor } from '../redux/slices/backgroundbarSlice';
+
 const BackgroundBar = () => {
     const dispatch = useDispatch()
 
@@ -45,6 +46,7 @@ const BackgroundBar = () => {
                 marginTop: '0',
                 marginLeft: '5px',
                 borderRadius: '10px',
+                background:"white"
 
             },
             activeColor: {
@@ -66,6 +68,7 @@ const BackgroundBar = () => {
                 height: '20px',
                 marginTop: '4px',
                 overflow: 'hidden',
+                background:"white"
             },
         }
     }

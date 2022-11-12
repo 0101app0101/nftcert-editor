@@ -44,6 +44,7 @@ const ColorBar = () => {
                 marginTop: '0',
                 marginLeft: '5px',
                 borderRadius: '10px',
+                background:"white"
 
             },
             activeColor: {
@@ -65,6 +66,7 @@ const ColorBar = () => {
                 height: '20px',
                 marginTop: '4px',
                 overflow: 'hidden',
+                background:"white"
             },
         }
     }

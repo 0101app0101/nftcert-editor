@@ -23,16 +23,16 @@ const FabricMain = () => {
     const zoomOut = () => setZoom(Math.floor(parseInt(parseInt(zoomPercentage) - parseInt(5))))
 
     const setZoom = (percent) => {
+        setZoomPercentage(parseInt(percent))
         setHeight(parseInt(Math.floor(initialHeight * (parseFloat(parseFloat(percent) / parseFloat(100))))))
         setWidth(parseInt(Math.floor(initialwidth * (parseFloat(parseFloat(percent) / parseFloat(100))))))
-        setZoomPercentage(parseInt(percent))
     }
 
     return (
         <div className={mainContentClass}>
             <TextTopBar />
             <div className='canvas-wrapper'>
-                <canvas width={width} height={height} style={{ background: "white", height: height+"px", width: width+"px" }} />
+                <canvas width={width} height={height} style={{ background: "white", height: height + "px", width: width + "px" }} />
             </div>
             <div className='zoom-container'>
                 <button onClick={() => zoomIn()} ><FontAwesomeIcon icon={faMagnifyingGlassPlus} /></button>
