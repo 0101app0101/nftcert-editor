@@ -1,8 +1,13 @@
-const Sidebar = ({ setsidebarstate, sidebarisopen }) => {
+import { useDispatch } from 'react-redux';
+import { openBackground, openText, openTemplates, openElements, openUploads, selectBackground, selectTemplates, selectText, selectElements, selectUploads } from '../redux/slices/sidebarSlice';
+const Sidebar = () => {
+
+    const dispatch = useDispatch();
+
     return (
         <div className="sidenav">
             <div className="sidebar-item">
-                <button onClick={() => !sidebarisopen && setsidebarstate(true)}>
+                <button  onClick={() => dispatch(openTemplates())}>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="24"
@@ -18,7 +23,7 @@ const Sidebar = ({ setsidebarstate, sidebarisopen }) => {
                 </button>
             </div>
             <div className="sidebar-item">
-                <button onClick={() => !sidebarisopen && setsidebarstate(true)}>
+                <button onClick={() => dispatch(openUploads())}>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="24"
@@ -33,7 +38,7 @@ const Sidebar = ({ setsidebarstate, sidebarisopen }) => {
                 </button>
             </div>
             <div className="sidebar-item">
-                <button onClick={() => !sidebarisopen && setsidebarstate(true)}>
+                <button onClick={() => dispatch(openElements())}>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="24"
@@ -51,7 +56,7 @@ const Sidebar = ({ setsidebarstate, sidebarisopen }) => {
                 </button>
             </div>
             <div className="sidebar-item">
-                <button onClick={() => !sidebarisopen && setsidebarstate(true)}>
+                <button onClick={() => dispatch(openText())}>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="24"
@@ -66,7 +71,7 @@ const Sidebar = ({ setsidebarstate, sidebarisopen }) => {
                 </button>
             </div>
             <div className="sidebar-item">
-                <button onClick={() => !sidebarisopen && setsidebarstate(true)}>
+                <button onClick={() => dispatch(openBackground())}>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="24"

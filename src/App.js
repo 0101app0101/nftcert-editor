@@ -4,11 +4,18 @@ import NavBar from './components/NavBar';
 import { useState, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlassMinus, faMagnifyingGlassPlus } from "@fortawesome/free-solid-svg-icons";
+import { useSelector } from 'react-redux';
+import TextBar from "./components/TextBar";
+import BackgroundBar from "./components/BackgroundBar";
+import { toggleSidebar, selectText, selectIsOpen, selectBackground } from "./redux/slices/sidebarSlice";
+import SidebarMainLoading from "./components/SidebarMainLoading";
+import TextTopBar from './components/TextTopBar';
+import ColorBar from './components/ColorBar';
+
 
 function App() {
 
-  const [sidebarIsOpen, setSidebarIsopen] = useState(true)
-  const setSideBarState = () => setSidebarIsopen(!sidebarIsOpen)
+  const sidebarIsOpen = useSelector(selectIsOpen);
   let mainContentClass = sidebarIsOpen ? "mainSidebarExpanded" : "mainSidebarCollapsed"
 
   const canvas = useRef();
@@ -39,15 +46,23 @@ function App() {
     setWIDTH(canvas.current.width * (percent / 100))
   }
 
+  const isTextBarSelected = useSelector(selectText);
+  const isBackgroundSelected = useSelector(selectBackground);
 
   return (
     <div className="App">
 
       <NavBar></NavBar>
-      <Sidebar setsidebarstate={setSideBarState} sidebarisopen={sidebarIsOpen} ></Sidebar>
-      <SidebarMain setsidebarstate={setSideBarState} sidebarisopen={sidebarIsOpen} ></SidebarMain>
+      <Sidebar></Sidebar>
+      <SidebarMain>
+        {(() => {
+          if (isTextBarSelected) { return <TextBar /> }
+          else if (isBackgroundSelected) { return <BackgroundBar /> }
+        })()}
+      </SidebarMain>
 
       <div className={mainContentClass}>
+        <TextTopBar />
         <div className='canvas-wrapper'>
           <canvas ref={canvas} width="500" height="500" style={{ background: "white" }} />
         </div>
@@ -57,7 +72,6 @@ function App() {
           <button onClick={() => ZoomOUT()}><FontAwesomeIcon icon={faMagnifyingGlassMinus} /></button>
         </div>
       </div>
-
     </div>
   );
 }

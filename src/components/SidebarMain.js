@@ -1,27 +1,22 @@
+import { useDispatch, useSelector } from 'react-redux'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faAngleRight, faAngleLeft } from "@fortawesome/free-solid-svg-icons"
+import { toggleSidebar, selectIsOpen } from "../redux/slices/sidebarSlice"
+import TextBar from "./TextBar"
+import SidebarMainLoading from "./SidebarMainLoading"
 
-const SidebarMain = ({ setsidebarstate, sidebarisopen }) => {
-    let sidebarToggleClass = sidebarisopen ? "sidebar-toggle-expanded" : "sidebar-toggle-collapsed"
-    let sidenav1class = sidebarisopen ? "sidenav1open" : "sidenav1close"
-    let arrow = sidebarisopen ? faAngleLeft : faAngleRight
+const SidebarMain = (props) => {
+    const dispatch = useDispatch();
+    let sidebarIsOpen = useSelector(selectIsOpen);
+
+    let sidebarToggleClass = sidebarIsOpen ? "sidebar-toggle-expanded" : "sidebar-toggle-collapsed"
+    let sidenav1class = sidebarIsOpen ? "sidenav1open" : "sidenav1close"
+    let arrow = sidebarIsOpen ? faAngleLeft : faAngleRight
+
     return (
         <div className={sidenav1class}>
-            <div className="templates-container">
-            <div class="card gradient" />
-            <div class="card gradient" />
-            <div class="card gradient" />
-            <div class="card gradient" />
-            <div class="card gradient" />
-            <div class="card gradient" />
-            <div class="card gradient" />
-            <div class="card gradient" />
-            <div class="card gradient" />
-            <div class="card gradient" />
-            <div class="card gradient" />     
-            <div class="card gradient" />     
-            </div>
-            <button onClick={() => { setsidebarstate() }} className={sidebarToggleClass}><FontAwesomeIcon icon={arrow} /></button>
+            {props.children}
+            <button onClick={() => { dispatch(toggleSidebar()) }} className={sidebarToggleClass}><FontAwesomeIcon icon={arrow} /></button>
         </div>
     )
 }
