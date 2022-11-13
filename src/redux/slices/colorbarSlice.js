@@ -1,22 +1,36 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-    color: {
-        rgb: {
-            r: 0,
-            g: 0,
-            b: 0,
-            a: 1,
-        }
+    color : {
+      hex: '#000',
+      rgb: {
+        r: 0,
+        g: 0,
+        b: 0,
+        a: 1,
+      },
+      hsl: {
+        h: 0,
+        s: 0,
+        l: 0,
+        a: 1,
+      },
     },
     backgroundColor: {
+        hex: '#000',
         rgb: {
-            r: 0,
-            g: 0,
-            b: 0,
-            a: 1,
-        }
-    }
+          r: 0,
+          g: 0,
+          b: 0,
+          a: 1,
+        },
+        hsl: {
+          h: 0,
+          s: 0,
+          l: 0,
+          a: 1,
+        },
+      }
 }
 
 export const colorbarSlice = createSlice({

@@ -1,17 +1,22 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { FabricJSCanvas, useFabricJSEditor } from "fabricjs-react";
+import { fabric } from 'fabric';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlassMinus, faMagnifyingGlassPlus } from "@fortawesome/free-solid-svg-icons";
 import { selectIsOpen } from "../redux/slices/sidebarSlice";
 import { selectcanvasBackgroundColor } from '../redux/slices/backgroundbarSlice';
+import { selectAddHeading, selectAddSubHeading, selectAddText } from '../redux/slices/textbarSlice';
 import TextTopBar from './TextTopBar';
 
 const FabricMain = () => {
 
     const { editor, onReady } = useFabricJSEditor();
 
-    const isSidebarOpen = useSelector(selectIsOpen);
+    let isSidebarOpen = useSelector(selectIsOpen);
+    let canvasBackgroundColor = useSelector(selectcanvasBackgroundColor);
+
     let mainContentClass = isSidebarOpen ? "mainSidebarExpanded" : "mainSidebarCollapsed"
 
     const initialHeight = parseInt(650)
@@ -22,34 +27,50 @@ const FabricMain = () => {
     const [width, setWidth] = useState(0)
     const [zoomPercentage, setZoomPercentage] = useState(0)
 
+    const zoomIn = () => setZoom(Math.floor(parseInt(parseInt(zoomPercentage) + parseInt(5))))
+    const zoomOut = () => setZoom(Math.floor(parseInt(parseInt(zoomPercentage) - parseInt(5))))
+    const setZoom = (percent) => {
+        percent = percent < 25 ? 25 : percent
+        percent = percent > 500 ? 500 : percent
+
+        setZoomPercentage(parseInt(percent))
+        setHeight(parseInt(Math.floor(initialHeight * (parseFloat(parseFloat(percent) / parseFloat(100))))))
+        setWidth(parseInt(Math.floor(initialwidth * (parseFloat(parseFloat(percent) / parseFloat(100))))))
+    }
+
     useEffect(() => {
         setZoom(initialzoomPercentage)
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     useEffect(() => {
         editor?.canvas.setHeight(height)
         editor?.canvas.setWidth(width)
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [height, width])
+        editor?.canvas.setZoom(parseFloat(zoomPercentage / 100))
+    }, [height, width, zoomPercentage])
 
-    let canvasBackgroundColor = useSelector(selectcanvasBackgroundColor);
-
-    useEffect(()=>{
-        editor?.canvas.setBackgroundColor(canvasBackgroundColor.hex)
+    useEffect(() => {
+        editor?.canvas.setBackgroundColor(`rgba(${canvasBackgroundColor.rgb.r},${canvasBackgroundColor.rgb.g},${canvasBackgroundColor.rgb.b},${canvasBackgroundColor.rgb.a})`)
         editor?.canvas.renderAll()
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[canvasBackgroundColor])
+    }, [canvasBackgroundColor])
 
-    const zoomIn = () => setZoom(Math.floor(parseInt(parseInt(zoomPercentage) + parseInt(5))))
+    useEffect(() => {
+        var text = new fabric.Textbox('Heading', { fontFamily: "Poppins-Regular, sans-serif", fontSize: 50, width:210 });
+        editor?.canvas.add(text)
+        editor?.canvas.renderAll()
+    }, [useSelector(selectAddHeading)])
 
-    const zoomOut = () => setZoom(Math.floor(parseInt(parseInt(zoomPercentage) - parseInt(5))))
+    useEffect(() => {
+        var text = new fabric.Textbox('Sub Heading', { fontFamily: "Poppins-Regular, sans-serif", fontSize: 30, width:210 });
+        editor?.canvas.add(text)
+        editor?.canvas.renderAll()
+    }, [useSelector(selectAddSubHeading)])
 
-    const setZoom = (percent) => {
-        setZoomPercentage(parseInt(percent))
-        setHeight(parseInt(Math.floor(initialHeight * (parseFloat(parseFloat(percent) / parseFloat(100))))))
-        setWidth(parseInt(Math.floor(initialwidth * (parseFloat(parseFloat(percent) / parseFloat(100))))))
-    }
+    useEffect(() => {
+        var text = new fabric.Textbox('Text', { fontFamily: "Poppins-Regular, sans-serif", fontSize: 18 });
+        editor?.canvas.add(text)
+        editor?.canvas.renderAll()
+    }, [useSelector(selectAddText)])
+
 
 
     return (

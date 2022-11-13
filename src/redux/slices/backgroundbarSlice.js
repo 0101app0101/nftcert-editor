@@ -1,7 +1,21 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-    canvasBackgroundColor: {}
+    canvasBackgroundColor: {
+        hex: '#fff',
+        rgb: {
+          r: 1,
+          g: 1,
+          b: 1,
+          a: 1,
+        },
+        hsl: {
+          h: 1,
+          s: 1,
+          l: 1,
+          a: 1,
+        },
+      }
 }
 
 export const backgroundbarSlice = createSlice({

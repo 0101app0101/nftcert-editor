@@ -34,6 +34,7 @@
     display: flex;
     justify-content: space-evenly;
     align-items: flex-start;
+    z-index: 1;
 }
 
 .sidenav1close {
@@ -47,6 +48,7 @@
     padding-top: 20px;
     text-align: center;
     border-radius: 10px;
+    z-index: 1;
 }
 
 .sidenav button {
@@ -274,6 +276,7 @@ body {
     text-align: center;
     margin-bottom: 10px;
     border-radius: 10px;
+    z-index: 1;
 }
 
 .zoom-container button,
@@ -453,6 +456,7 @@ body {
     text-align: center;
     margin-bottom: 10px;
     border-radius: 10px;
+    z-index: 1;
 }
 
 .text-top-bar svg {
