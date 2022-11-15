@@ -23,7 +23,7 @@ const BackgroundBar = () => {
             saturation: {
                 borderRadius: "10px",
                 width: '100%',
-                paddingBottom: '50%',
+                paddingBottom: '75%',
                 position: 'relative',
                 overflow: 'hidden',
             },
@@ -46,7 +46,7 @@ const BackgroundBar = () => {
                 marginTop: '0',
                 marginLeft: '5px',
                 borderRadius: '10px',
-                background:"white"
+                background: "white"
 
             },
             activeColor: {
@@ -68,7 +68,7 @@ const BackgroundBar = () => {
                 height: '20px',
                 marginTop: '4px',
                 overflow: 'hidden',
-                background:"white"
+                background: "white"
             },
         }
     }
@@ -90,27 +90,27 @@ const BackgroundBar = () => {
                     <div onClick={() => dispatch(enableImage())} className="taeb">Image</div>
                 </div>
             </div>
-            {isColorEnabled && 
+            {isColorEnabled &&
                 <SketchPicker
                     styles={styles}
                     color={canvasBackgroundColor.rgb}
                     onChange={(updatedColor) => dispatch(changecanvasBackgroundColor(updatedColor))}
                 />}
             {isImageEnabled &&
-            <div className="templates-container">
-            <div className="card gradient" />
-            <div className="card gradient" />
-            <div className="card gradient" />
-            <div className="card gradient" />
-            <div className="card gradient" />
-            <div className="card gradient" />
-            <div className="card gradient" />
-            <div className="card gradient" />
-            <div className="card gradient" />
-            <div className="card gradient" />
-            <div className="card gradient" />
-            <div className="card gradient" />
-        </div>}
+                <div className="templates-container">
+                    <div className="card gradient" />
+                    <div className="card gradient" />
+                    <div className="card gradient" />
+                    <div className="card gradient" />
+                    <div className="card gradient" />
+                    <div className="card gradient" />
+                    <div className="card gradient" />
+                    <div className="card gradient" />
+                    <div className="card gradient" />
+                    <div className="card gradient" />
+                    <div className="card gradient" />
+                    <div className="card gradient" />
+                </div>}
         </div>
     )
 }

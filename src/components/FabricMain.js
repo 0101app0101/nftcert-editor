@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { FabricJSCanvas, useFabricJSEditor } from "fabricjs-react";
 import { fabric } from 'fabric';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -8,14 +8,19 @@ import { faMagnifyingGlassMinus, faMagnifyingGlassPlus } from "@fortawesome/free
 import { selectIsOpen } from "../redux/slices/sidebarSlice";
 import { selectcanvasBackgroundColor } from '../redux/slices/backgroundbarSlice';
 import { selectAddHeading, selectAddSubHeading, selectAddText } from '../redux/slices/textbarSlice';
+import { openText } from '../redux/slices/sidebarSlice';
 import TextTopBar from './TextTopBar';
 
 const FabricMain = () => {
 
     const { editor, onReady } = useFabricJSEditor();
+    const dispatch = useDispatch();
 
     let isSidebarOpen = useSelector(selectIsOpen);
     let canvasBackgroundColor = useSelector(selectcanvasBackgroundColor);
+
+    let activeObject = editor?.canvas.getActiveObject();
+    let isTextSelected = (activeObject !== undefined && activeObject !== null && activeObject.text !== undefined)
 
     let mainContentClass = isSidebarOpen ? "mainSidebarExpanded" : "mainSidebarCollapsed"
 
@@ -54,13 +59,13 @@ const FabricMain = () => {
     }, [canvasBackgroundColor])
 
     useEffect(() => {
-        var text = new fabric.Textbox('Heading', { fontFamily: "Poppins-Regular, sans-serif", fontSize: 50, width:210 });
+        var text = new fabric.Textbox('Heading', { fontFamily: "Poppins-Regular, sans-serif", fontSize: 50, width: 210 });
         editor?.canvas.add(text)
         editor?.canvas.renderAll()
     }, [useSelector(selectAddHeading)])
 
     useEffect(() => {
-        var text = new fabric.Textbox('Sub Heading', { fontFamily: "Poppins-Regular, sans-serif", fontSize: 30, width:210 });
+        var text = new fabric.Textbox('Sub Heading', { fontFamily: "Poppins-Regular, sans-serif", fontSize: 30, width: 190,fontWeight:"bold" });
         editor?.canvas.add(text)
         editor?.canvas.renderAll()
     }, [useSelector(selectAddSubHeading)])
@@ -71,11 +76,12 @@ const FabricMain = () => {
         editor?.canvas.renderAll()
     }, [useSelector(selectAddText)])
 
-
-
+    useEffect(() => {
+        !isTextSelected && dispatch(openText())
+    }, [activeObject])
     return (
         <div className={mainContentClass}>
-            <TextTopBar />
+            {isTextSelected && <TextTopBar editor={editor} />}
             <div className='canvas-wrapper'>
                 <FabricJSCanvas className='canvas-main' onReady={onReady} />
             </div>
