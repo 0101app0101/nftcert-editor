@@ -38,17 +38,17 @@ export const colorbarSlice = createSlice({
     initialState,
     reducers: {
         changeColor: (state, action) => {
-            state.color.rgb = action.payload.rgb
+            state.color = action.payload
         },
         changeBackgroundColor: (state, action) => {
-            state.backgroundColor.rgb = action.payload.rgb
+            state.backgroundColor = action.payload
         }
     }
 })
 
 export const { changeColor, changeBackgroundColor } = colorbarSlice.actions;
 
-export const selectColor = (state) => state.colorbar.color.rgb;
-export const selectBackgroundColor = (state) => state.colorbar.backgroundColor.rgb;
+export const selectColor = (state) => state.colorbar.color;
+export const selectBackgroundColor = (state) => state.colorbar.backgroundColor;
 
 export default colorbarSlice.reducer;

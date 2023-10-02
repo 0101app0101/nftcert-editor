@@ -76,14 +76,14 @@ const ColorBar = () => {
             <h4 className='color-heading'>Text Color</h4>
             <SketchPicker
                 styles={styles}
-                color={color}
+                color={color.rgb}
                 onChange={(updatedColor) => dispatch(changeColor(updatedColor))}
             />
             <hr style={{color:"#b3b3b3"}}></hr>
              <h4 className='color-heading'>Background Color</h4>
             <SketchPicker
                 styles={styles}
-                color={backgroundColor}
+                color={backgroundColor.rgb}
                 onChange={(updatedBackgroundColor) => dispatch(changeBackgroundColor(updatedBackgroundColor))}
             />
         </div>

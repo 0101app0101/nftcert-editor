@@ -384,6 +384,15 @@ body {
     font-weight: 600;
 }
 
+.upload-button {
+    margin-bottom: 18px !important;
+    height: 70px !important;
+    vertical-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .textbar-container {
     width: 90%;
 }

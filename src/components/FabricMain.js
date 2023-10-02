@@ -8,6 +8,7 @@ import { faMagnifyingGlassMinus, faMagnifyingGlassPlus } from "@fortawesome/free
 import { selectIsOpen } from "../redux/slices/sidebarSlice";
 import { selectcanvasBackgroundColor } from '../redux/slices/backgroundbarSlice';
 import { selectAddHeading, selectAddSubHeading, selectAddText } from '../redux/slices/textbarSlice';
+import { selectColor, selectBackgroundColor  } from '../redux/slices/colorbarSlice';
 import { openText } from '../redux/slices/sidebarSlice';
 import TextTopBar from './TextTopBar';
 
@@ -18,6 +19,8 @@ const FabricMain = () => {
 
     let isSidebarOpen = useSelector(selectIsOpen);
     let canvasBackgroundColor = useSelector(selectcanvasBackgroundColor);
+    let textcolor = useSelector(selectColor)
+    let textbgColor = useSelector(selectBackgroundColor)
 
     let activeObject = editor?.canvas.getActiveObject();
     let isTextSelected = (activeObject !== undefined && activeObject !== null && activeObject.text !== undefined)
@@ -79,6 +82,17 @@ const FabricMain = () => {
     useEffect(() => {
         !isTextSelected && dispatch(openText())
     }, [activeObject])
+
+    useEffect(() => {
+        isTextSelected && activeObject.set("backgroundColor", `rgba(${textbgColor.rgb.r},${textbgColor.rgb.g},${textbgColor.rgb.b},${textbgColor.rgb.a})`)
+        editor?.canvas.renderAll()
+    },[textbgColor])
+    
+    useEffect(() => {
+        isTextSelected && activeObject.set("fill", `rgba(${textcolor.rgb.r},${textcolor.rgb.g},${textcolor.rgb.b},${textcolor.rgb.a})`)
+        editor?.canvas.renderAll()
+    },[textcolor])
+
     return (
         <div className={mainContentClass}>
             {isTextSelected && <TextTopBar editor={editor} />}
